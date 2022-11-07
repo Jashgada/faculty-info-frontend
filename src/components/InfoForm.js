@@ -1,5 +1,5 @@
 import { FieldArray, FormikProvider, useFormik } from "formik";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import './infoForm.css';
 import {IconButton, Button, Checkbox, createTheme, FormControlLabel, TextareaAutosize, TextField, ThemeProvider, InputLabel } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -16,7 +16,7 @@ const SignupForm = () => {
             .then(response => setFaculty(response.data));
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    },[]);
+    },[id]);
     const faculty = fac;
   const formik = useFormik({enableReinitialize:true, validateOnChange:false,
     initialValues: { name: faculty.name, title: faculty.title, tenuredStatus: faculty.tenuredStatus || false, degrees: faculty.degrees, 
