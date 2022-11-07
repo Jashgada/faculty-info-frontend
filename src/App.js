@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+
 import './App.css';
+/* eslint-disable import/no-webpack-loader-syntax */
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { getAllProfessors } from './api/handler';
+
 
 function App() {
+  const [faculties, setFaculties] = useState([]);
+
+    useEffect(() => {
+        // GET request using axios inside useEffect React hook
+        getAllProfessors()?.then(response => setFaculties(response.data));
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       List of All Faculty
       </header>
+      <div className='list'>
+        {
+        faculties.map((faculty) => {
+          return (<li key={faculty._id}>
+            <Link to={{pathname: faculty._id}}>{faculty.name}</Link>
+          </li>);
+        })}
+      </div>
     </div>
   );
 }

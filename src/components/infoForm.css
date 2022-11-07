@@ -1,0 +1,19 @@
+
+.formInput{
+    display: block;
+    justify-items: center;
+}
+.form-group{
+    display: block;
+    justify-items: center;
+}
+
+.fieldArray{
+    display: flex;
+
+}
+
+.fieldArray > *{
+    margin-right: 5px;
+}
+
