@@ -23,8 +23,14 @@ const SignupForm = () => {
         academicExperiences: faculty.academicExperiences, nonAcademicExperiences: faculty.nonAcademicExperiences, certsAndProfessionalRegistrations: faculty.certsAndProfessionalRegistrations,
     memberships: faculty.memberships, honors:faculty.honors, publications:faculty.publications, professionalDevelopment: faculty.professionalDevelopment},
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      updateProfessor(id, values)
+      updateProfessor(id, values).then(function (response) {
+          if(response.status===200){
+            alert("Updated Successfully");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   });
 
