@@ -21,7 +21,7 @@ const SignupForm = () => {
   const formik = useFormik({enableReinitialize:true, validateOnChange:false,
     initialValues: { name: faculty.name, title: faculty.title, tenuredStatus: faculty.tenuredStatus || false, degrees: faculty.degrees, 
         academicExperiences: faculty.academicExperiences, nonAcademicExperiences: faculty.nonAcademicExperiences, certsAndProfessionalRegistrations: faculty.certsAndProfessionalRegistrations,
-    memberships: faculty.memberships, honors:faculty.honors, publications:faculty.publications, professionalDevelopment: faculty.professionalDevelopment},
+    memberships: faculty.memberships, honors:faculty.honors, services: faculty.services, publications:faculty.publications, professionalDevelopments: faculty.professionalDevelopments},
     onSubmit: values => {
       updateProfessor(id, values).then(function (response) {
           if(response.status===200){
@@ -251,6 +251,31 @@ const theme = createTheme({
     />
 
 
+<h3>Services and Activities</h3>
+    <FieldArray
+    name="services"
+    render={arrayHelpers => (
+        <div>
+            {formik.values.services && formik.values.services.length > 0 ? (
+            formik.values.services.map((services, index) => (
+                <div key={index} className='fieldArray'>
+                    <TextField value={formik.values.services[index].service} onChange={formik.handleChange} name = {`services[${index}].service`}/>
+                    <IconButton aria-label="delete" color="error" onClick={() => arrayHelpers.remove(index)}>
+                      <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+           </div>
+         ))) : null}
+         <Button
+           size="small" variant="contained"
+           onClick={() => arrayHelpers.push({service:''})}
+         >
+           Add
+         </Button>
+       </div>
+        )}
+    />
+
+
 <h3>Key Publications and Presentations</h3>
     <FieldArray
     name="publications"
@@ -279,14 +304,15 @@ const theme = createTheme({
 <h3>Professional Development Activities in Last 5 Years  </h3>
     <FieldArray className = "form-group"
     
-    name="professionalDevelopment"
+    name="professionalDevelopments"
     render={arrayHelpers => (
         <div>
-            {formik.values.professionalDevelopment && formik.values.professionalDevelopment.length > 0 ? (
-            formik.values.professionalDevelopment.map((x, index) => (
+            {formik.values.professionalDevelopments && formik.values.professionalDevelopments.length > 0 ? (
+            formik.values.professionalDevelopments
+            .map((x, index) => (
                 <div key={index} className='fieldArray'>
                   <div style={{width:"80%"}}>
-                    <TextField fullWidth value={formik.values.professionalDevelopment[index].activity} onChange={formik.handleChange}  name = {`professionalDevelopment[${index}].activity`}/>
+                    <TextField fullWidth value={formik.values.professionalDevelopments[index].activity} onChange={formik.handleChange}  name = {`professionalDevelopments[${index}].activity`}/>
                   </div>
                   <IconButton aria-label="delete" color="error" onClick={() => arrayHelpers.remove(index)}>
                       <DeleteIcon fontSize="inherit" />

@@ -17,7 +17,6 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}></Route>
           <Route path="/:id" element={<InfoForm/>}></Route>
-        
         </Routes>
       </BrowserRouter>
    

@@ -1,9 +1,9 @@
 
 import './App.css';
 /* eslint-disable import/no-webpack-loader-syntax */
-import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { getAllProfessors } from './api/handler';
+import { ListItemButton, ListItemText } from '@mui/material';
 
 
 function App() {
@@ -24,7 +24,10 @@ function App() {
         {
         faculties.map((faculty) => {
           return (<li key={faculty._id}>
-            <Link to={{pathname: faculty._id}}>{faculty.name}</Link>
+            {/* <Link to={{pathname: faculty._id}}>{faculty.name}</Link> */}
+            <ListItemButton component="a" href={faculty._id}>
+                <ListItemText primary={faculty.name} />
+            </ListItemButton>
           </li>);
         })}
       </div>
