@@ -25,9 +25,17 @@ function App() {
         faculties.map((faculty) => {
           return (<li key={faculty._id}>
             {/* <Link to={{pathname: faculty._id}}>{faculty.name}</Link> */}
-            <ListItemButton component="a" href={faculty._id}>
+            <>
+            <ListItemButton style={{width:'15%'}} component="a" href={faculty._id}>
                 <ListItemText primary={faculty.name} />
             </ListItemButton>
+            <ListItemButton style={{width:'15%'}} component="a" href={faculty._id}>
+                <ListItemText primary='Edit' />
+            </ListItemButton>
+            <ListItemButton  style={{width:'15%'}} component="a" href={`document/${faculty._id}`}>
+                <ListItemText primary='Download PDF' />
+            </ListItemButton>
+            </>
           </li>);
         })}
       </div>

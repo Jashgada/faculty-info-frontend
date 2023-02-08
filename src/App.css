@@ -5,5 +5,11 @@
 
 .list{
     padding-left: 10px;
+    flex-direction: column;
+    display: flex;
+}
+
+.list > li{
+    display: inline-flex;
 }
 

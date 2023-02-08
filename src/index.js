@@ -9,17 +9,18 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import InfoForm from './components/InfoForm'
+import Viewer from './components/pdf-creator/Pdf-Creator';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}></Route>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}></Route>
           <Route path="/:id" element={<InfoForm/>}></Route>
+          <Route path="/document/:id" element={<Viewer/>}></Route>
         </Routes>
       </BrowserRouter>
-   
   </React.StrictMode>
 );
 
